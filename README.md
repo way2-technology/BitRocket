@@ -65,14 +65,41 @@ Here you've got to define the user who is posting the updates. This is the user 
 Set this setting to true.
 <br /><br />
 
-##### Script
+##### BitBucket Cloud Script
+When using BitBucket Cloud you have to insert the complete code of the file `BBCloud__POSTReceiveHook.js` into this field.
+<br /><br />
 
-###### BitBucket Cloud
-When using BitBucket Cloud you have to insert the complete code of the file `BBCloud__POSTReceiveHook.js` into this field.<br />
-<br />
+###### Configure Messages:
+Define which links in pull request notification should be shown
+```
+const showLinks = {
+    decline: true,
+    approve: true,
+    merge: true,
+    commits: true,
+    comments: true
+};
+```
+<br /><br />
+Now set, which notification you want to receive in Rocket.Chat
+```
+const showNotifications = {
+    push: true,
+    fork: true,
+    comment: true,
+    pullrequest_created: true,
+    pullrequest_declined: true,
+    pullrequest_merged: true,
+    pullrequest_updated: true,
+    pullrequest_comment_created: true,
+    pullrequest_comment_deleted: true,
+    pullrequest_comment_updated: true
+};
+```
+<br /><br /><br /><br />
 
-###### BitBucket Server
-When using BitBucket Server you have to insert the complete code of the file `BBServer_POSTReceiveHook.js` into this field.<br />
+##### BitBucket Server Script
+When using BitBucket Server you have to insert the complete code of the file `BBServer_POSTReceiveHook.js` into this field.
 <br /><br />
 
 #### Save changes
