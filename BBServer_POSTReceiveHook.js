@@ -1,5 +1,5 @@
 const config = {
-    bitBucketUrl: 'https://git.finndrop-office.de/',
+    bitBucketUrl: '',
     color: '#225159',
     update: true
 };
