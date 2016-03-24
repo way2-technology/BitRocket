@@ -139,7 +139,7 @@ No message received? Please double check all steps. If everything is set up as m
 <br /><br /><br /><br />
 
 ## Add more repositories <a name="more"></a>
-To inform your Rocket.Chat channel or user about changes on other repositories, just follow the instructions on how to create the Post-Receive WebHook in BitBucket Server again. You're not limited in the number of repositories which send information to Rocket.Chat. 
+To inform your Rocket.Chat channel or user about changes on other repositories, just follow the instructions on how to create the Post-Receive WebHook in BitBucket Cloud/Server again. You're not limited in the number of repositories which send information to Rocket.Chat. 
 <br /><br /><br /><br />
 
 ## Want to contribute? <a name="contribute"></a>
