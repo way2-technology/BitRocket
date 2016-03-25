@@ -1,3 +1,7 @@
+const config = {
+    color: '#225159'
+};
+
 const showLinks = {
     decline: true,
     approve: true,
@@ -46,7 +50,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -75,7 +80,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -105,7 +111,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -165,7 +172,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -196,7 +204,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -229,7 +238,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -260,7 +270,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -288,7 +299,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -316,7 +328,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     },
@@ -344,7 +357,8 @@ const processors = {
             content: {
                 text: text,
                 attachments: [attachment],
-                parseUrls: false
+                parseUrls: false,
+                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
             }
         };
     }

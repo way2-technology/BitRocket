@@ -1,6 +1,6 @@
 ![Bitrocket Logo][bitrocketlogo]
 <br />
-# Bitrocket
+# BitRocket
 <br />
 <p>
 <b><a href="#overview">Overview</a></b>
