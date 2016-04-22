@@ -190,7 +190,7 @@ Licensed under the [MIT license][license].
 [BitBucketcloud]: https://BitBucket.org "Atlassian BitBucket Cloud"
 [rocketchat]: https://rocket.chat/ "Rocket.Chat"
 [BitBucketplugin]: https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview "BitBucket Server Web Post Hooks Plugin"
-[source]: https://git.finndrop-office.de/plugins/servlet/archive/projects/FDS/repos/bitrocket?at=refs%2Fheads%2Fmaster "Download BitRocket"
+[source]: https://github.com/FinndropStudios/BitRocket/archive/master.zip "Download BitRocket"
 [finndrop]: https://www.finndrop.de "Finndrop Studios"
 [license]: license/LICENSE-MIT.txt "MIT License"
 
