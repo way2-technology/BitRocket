@@ -35,11 +35,11 @@ const processors = {
             message: request.content.push.changes[0].new.target.message
         };
         const links = {
-            self: request.content.push.changes[0].new.repository.links.html.href
+            self: request.content.push.changes[0].new.target.links.self.href
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') pushed changes:\n';
-        text += ':arrow_right: ' + repository.name + '/' + repository.branch + '\n';
+        text += '=> ' + repository.name + '/' + repository.branch + '\n';
         text += repository.message + '\n';
         const attachment = {
             author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-50220-512px-3ba.png',
@@ -66,11 +66,11 @@ const processors = {
             fork: request.content.fork.full_name
         };
         const links = {
-            self: request.content.repository.links.html.href
+            self: request.content.repository.links.self.href
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') forked repo ' + repository.name + ':\n';
-        text += repository.name + ' :arrow_right: ' + repository.fork + '\n';
+        text += repository.name + ' => ' + repository.fork + '\n';
         const attachment = {
             author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-47820-512px-db2.png',
             author_name: repository.name + '/' + repository.branch,
@@ -97,7 +97,7 @@ const processors = {
             path: request.content.comment.inline.path
         };
         const links = {
-            self: request.content.comment.links.html.href
+            self: request.content.comment.links.self.href
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') commented on commit:\n';
@@ -132,7 +132,7 @@ const processors = {
             description: request.content.pullrequest_created.description
         };
         const links = {
-            self: request.content.pullrequest_created.links.html.href,
+            self: request.content.pullrequest_created.links.self.href,
             decline: request.content.pullrequest_created.links.decline.href,
             approve: request.content.pullrequest_created.links.approve.href,
             merge: request.content.pullrequest_created.links.merge.href,
@@ -141,7 +141,7 @@ const processors = {
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') opened a new pull request:\n';
-        text += pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + ' :arrow_right: ' + pullrequest.destinationrepo + '/' + pullrequest.destinationbranch + '\n\n';
+        text += pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + ' => ' + pullrequest.destinationrepo + '/' + pullrequest.destinationbranch + '\n\n';
         text += 'Description:\n';
         text += pullrequest.description + '\n';
         let actions = 'Actions:';
@@ -193,7 +193,7 @@ const processors = {
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') declined a pull request:\n';
-        text += pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + ' :arrow_right: ' + pullrequest.destinationrepo + '/' + pullrequest.destinationbranch + '\n';
+        text += pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + ' => ' + pullrequest.destinationrepo + '/' + pullrequest.destinationbranch + '\n';
         text += 'Reason:\n';
         text += pullrequest.reason + '\n';
         const attachment = {
@@ -225,7 +225,7 @@ const processors = {
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') merged a pull request:\n';
-        text += pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + ' :arrow_right: ' + pullrequest.destinationrepo + '/' + pullrequest.destinationbranch + '\n';
+        text += pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + ' => ' + pullrequest.destinationrepo + '/' + pullrequest.destinationbranch + '\n';
         if(pullrequest.description != '') {
             text += 'Description:\n';
             text += pullrequest.description + '\n';
@@ -257,7 +257,7 @@ const processors = {
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') updated a pull request:\n';
-        text += pullrequest.sourcebranch + ' :arrow_right: ' + pullrequest.destinationbranch + '\n';
+        text += pullrequest.sourcebranch + ' => ' + pullrequest.destinationbranch + '\n';
         if(pullrequest.description != '') {
             text += 'Description:\n';
             text += pullrequest.description + '\n';
@@ -284,7 +284,7 @@ const processors = {
         const comment = {
             text: request.content.pullrequest_comment_created.content.raw,
             id: request.content.pullrequest_comment_created.id,
-            link: request.content.pullrequest_comment_created.links.html.href
+            link: request.content.pullrequest_comment_created.links.self.href
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') commented on a pull request:\n';
@@ -313,7 +313,7 @@ const processors = {
         const comment = {
             text: request.content.pullrequest_comment_deleted.content.raw,
             id: request.content.pullrequest_comment_deleted.id,
-            link: request.content.pullrequest_comment_deleted.links.html.href
+            link: request.content.pullrequest_comment_deleted.links.self.href
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') deleted a comment on a pull request:\n';
@@ -342,7 +342,7 @@ const processors = {
         const comment = {
             text: request.content.pullrequest_comment_updated.content.raw,
             id: request.content.pullrequest_comment_updated.id,
-            link: request.content.pullrequest_comment_updated.links.html.href
+            link: request.content.pullrequest_comment_updated.links.self.href
         };
         let text = '';
         text += author.displayname + ' (@' + author.username + ') updated a comment on a pull request:\n';
@@ -369,12 +369,21 @@ class Script {
      * @params {object} request
      */
     process_incoming_request({ request }) {
-        let result = {};
+        var result = {
+            error: {
+                success: false,
+                message: 'Something went wrong before processing started...'
+            }
+        };
 
         const firstKey = Object.keys(request.content)[0];
 
+        //console.log(request, firstKey);
+
         if (showNotifications[firstKey] === true) {
-            return processors[firstKey](request);
+            //console.log('right before', processors[firstKey](request));
+            result = processors[firstKey](request);
         }
+        return result;
     }
 }
