@@ -41,7 +41,6 @@ const processors = {
         text += author.displayname + ' (@' + author.username + ') pushed changes:\n';
         text += repository.message + '\n';
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-50220-512px-3ba.png',
             author_name: repository.name + '/' + repository.branch,
             author_link: links.self
         };
@@ -71,7 +70,6 @@ const processors = {
         text += author.displayname + ' (@' + author.username + ') forked repo ' + repository.name + ':\n';
         text += repository.name + ' => ' + repository.fork + '\n';
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-47820-512px-db2.png',
             author_name: repository.name + '/' + repository.branch,
             author_link: links.self
         };
@@ -102,7 +100,6 @@ const processors = {
         text += author.displayname + ' (@' + author.username + ') commented on commit:\n';
         text += comment.text + '\n';
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2802_db2aa/prod_thumb/plainicon.com-39439-512px.png',
             author_name: comment.repo + '/' + comment.path,
             author_link: links.self
         };
@@ -163,7 +160,6 @@ const processors = {
             text += actions;
         }
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-50223-512px-5be.png',
             author_name: '#' + pullrequest.id + ' - ' + pullrequest.title,
             author_link: links.self
         };
@@ -196,7 +192,6 @@ const processors = {
         text += 'Reason:\n';
         text += pullrequest.reason + '\n';
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-50223-512px-5be.png',
             author_name: 'DECLINED: ' + pullrequest.title
         };
         return {
@@ -230,7 +225,6 @@ const processors = {
             text += pullrequest.description + '\n';
         }
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-50223-512px-5be.png',
             author_name: 'MERGED: ' + pullrequest.title
         };
         return {
@@ -262,7 +256,6 @@ const processors = {
             text += pullrequest.description + '\n';
         }
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2800_a1826/prod_thumb/plainicon.com-50223-512px-5be.png',
             author_name: 'UPDATED: ' + pullrequest.title
         };
         return {
@@ -290,7 +283,6 @@ const processors = {
         text += 'Comment:\n';
         text += comment.text + '\n';
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2802_db2aa/prod_thumb/plainicon.com-39439-512px.png',
             author_name: '#' + comment.id,
             author_link: comment.link
         };
@@ -319,7 +311,6 @@ const processors = {
         text += 'Comment:\n';
         text += comment.text + '\n';
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2802_db2aa/prod_thumb/plainicon.com-39439-512px.png',
             author_name: '#' + comment.id,
             author_link: comment.link
         };
@@ -348,7 +339,6 @@ const processors = {
         text += 'Comment:\n';
         text += comment.text + '\n';
         const attachment = {
-            author_icon: 'http://plainicon.com/dboard/userprod/2802_db2aa/prod_thumb/plainicon.com-39439-512px.png',
             author_name: '#' + comment.id,
             author_link: comment.link
         };
