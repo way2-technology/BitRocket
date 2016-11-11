@@ -365,13 +365,11 @@ class Script {
             }
         };
 
-        const firstKey = Object.keys(request.content)[0];
-
-        //console.log(request, firstKey);
-
-        if (showNotifications[firstKey] === true) {
-            //console.log('right before', processors[firstKey](request));
-            result = processors[firstKey](request);
+        let keys = Object.keys(request.content);
+        for (let key of keys) {
+            if (showNotifications[key] === true) {
+                result = processors[key](request);
+            }
         }
         return result;
     }
