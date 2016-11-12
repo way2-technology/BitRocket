@@ -26,27 +26,28 @@ const showNotifications = {
 const processors = {
     push(request) {
         const author = {
-            username: request.content.actor.username,
-            displayname: request.content.actor.display_name
+            displayname: request.content.actor.display_name,
+            link: request.content.actor.links.html,
+            avatar: request.content.actor.links.avatar.href
         };
         const repository = {
             name: request.content.repository.full_name,
-            branch: request.content.repository.name,
-            message: request.content.push.changes[0].new.target.message
+            link: request.content.repository.links.html.href
         };
-        const links = {
-            self: request.content.push.changes[0].new.links.html.href
-        };
+        const commits = request.content.push.changes[0].commits;
         let text = '';
-        text += author.displayname + ' (@' + author.username + ') pushed changes:\n';
-        text += repository.message + '\n';
+        text += "On repository " + "[" + repository.name + "]" + "(" + repository.link + ")" + ": " + "\n"
+        for (let commit of commits) {
+            text += "*Pushed* " + "[" + commit.hash.toString().substring(0,6) + "]" + "(" + commit.links.html.href + ")" + ": " + commit.message;
+        }
         const attachment = {
-            author_name: repository.name + '/' + repository.branch,
-            author_link: links.self
+            author_name: author.displayname,
+            author_link: author.link,
+            author_icon: author.avatar,
+            text: text
         };
         return {
             content: {
-                text: text,
                 attachments: [attachment],
                 parseUrls: false,
                 color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
