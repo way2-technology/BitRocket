@@ -362,7 +362,7 @@ class Script {
         var result = {
             error: {
                 success: false,
-                message: 'Something went wrong before processing started...'
+                message: 'Something went wrong before processing started or the handling of this type of trigger is not implemented. Please consider to disable the trigger or send a bug report.'
             }
         };
 
