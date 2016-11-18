@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const config = {
     color: '#225159'
 };
@@ -36,7 +38,7 @@ const processors = {
         };
         const commits = request.content.push.changes[0].commits;
         let text = '';
-        text += "On repository " + "[" + repository.name + "]" + "(" + repository.link + ")" + ": " + "\n"
+        text += "On repository " + "[" + repository.name + "]" + "(" + repository.link + ")" + ": " + "\n";
         for (let commit of commits) {
             text += "*Pushed* " + "[" + commit.hash.toString().substring(0,6) + "]" + "(" + commit.links.html.href + ")" + ": " + commit.message;
         }
@@ -50,7 +52,7 @@ const processors = {
             content: {
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -79,7 +81,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -109,7 +111,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -142,19 +144,19 @@ const processors = {
         text += 'Description:\n';
         text += pullrequest.description + '\n';
         let actions = 'Actions:';
-        if(showLinks['decline']) {
+        if(showLinks.decline) {
             actions += ' | [decline](' + links.decline + ')';
         }
-        if(showLinks['approve']) {
+        if(showLinks.approve) {
             actions += ' | [approve](' + links.approve + ')';
         }
-        if(showLinks['merge']) {
+        if(showLinks.merge) {
             actions += ' | [merge](' + links.merge + ')';
         }
-        if(showLinks['commits']) {
+        if(showLinks.commits) {
             actions += ' | [view commits](' + links.commits + ')';
         }
-        if(showLinks['comments']) {
+        if(showLinks.comments) {
             actions += ' | [view comments](' + links.comments + ')';
         }
         if(actions != 'Actions:') {
@@ -169,7 +171,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -200,7 +202,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -221,7 +223,7 @@ const processors = {
         let text = '';
         text += author.displayname + ' (@' + author.username + ') merged a pull request:\n';
         text += pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + ' => ' + pullrequest.destinationrepo + '/' + pullrequest.destinationbranch + '\n';
-        if(pullrequest.description != '') {
+        if(pullrequest.description !== '') {
             text += 'Description:\n';
             text += pullrequest.description + '\n';
         }
@@ -233,7 +235,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -252,7 +254,7 @@ const processors = {
         let text = '';
         text += author.displayname + ' (@' + author.username + ') updated a pull request:\n';
         text += pullrequest.sourcebranch + ' => ' + pullrequest.destinationbranch + '\n';
-        if(pullrequest.description != '') {
+        if(pullrequest.description !== '') {
             text += 'Description:\n';
             text += pullrequest.description + '\n';
         }
@@ -264,7 +266,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -292,7 +294,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -320,7 +322,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     },
@@ -348,7 +350,7 @@ const processors = {
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config['color'] != '') ? '#' + config['color'].replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
         };
     }
