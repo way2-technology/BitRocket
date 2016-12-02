@@ -25,32 +25,46 @@ const showNotifications = {
     pullrequest_comment_updated: true
 };
 
+function get_basic_info(request) {
+  const author = {
+      displayname: request.content.actor.display_name,
+      link: request.content.actor.links.html,
+      avatar: request.content.actor.links.avatar.href
+  };
+  const repository = {
+      name: request.content.repository.full_name,
+      link: request.content.repository.links.html.href
+  };
+  return {
+      author: author,
+      repository: repository
+  };
+}
+
+function create_attachement(author, text){
+    const attachment = {
+        author_name: author.displayname,
+        author_link: author.link,
+        author_icon: author.avatar,
+        text: text
+    };
+    return attachment;
+}
+
 const processors = {
     push(request) {
-        const author = {
-            displayname: request.content.actor.display_name,
-            link: request.content.actor.links.html,
-            avatar: request.content.actor.links.avatar.href
-        };
-        const repository = {
-            name: request.content.repository.full_name,
-            link: request.content.repository.links.html.href
-        };
+        const info = get_basic_info(request);
         const commits = request.content.push.changes[0].commits;
+
         let text = '';
-        text += "On repository " + "[" + repository.name + "]" + "(" + repository.link + ")" + ": " + "\n";
+        text += "On repository " + "[" + info.repository.name + "]" + "(" + info.repository.link + ")" + ": " + "\n";
         for (let commit of commits) {
             text += "*Pushed* " + "[" + commit.hash.toString().substring(0,6) + "]" + "(" + commit.links.html.href + ")" + ": " + commit.message;
         }
-        const attachment = {
-            author_name: author.displayname,
-            author_link: author.link,
-            author_icon: author.avatar,
-            text: text
-        };
+
         return {
             content: {
-                attachments: [attachment],
+                attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
                 color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
@@ -58,28 +72,18 @@ const processors = {
     },
 
     fork(request) {
-        const author = {
-            username: request.content.actor.username,
-            displayname: request.content.actor.display_name
-        };
-        const repository = {
-            name: request.content.repository.full_name,
-            fork: request.content.fork.full_name
-        };
-        const links = {
-            self: request.content.repository.links.self.href
-        };
+        const info = get_basic_info(request);
+
+        const fork_name = request.content.fork.full_name;
+        const fork_link = request.content.fork.links.html.href;
+
         let text = '';
-        text += author.displayname + ' (@' + author.username + ') forked repo ' + repository.name + ':\n';
-        text += repository.name + ' => ' + repository.fork + '\n';
-        const attachment = {
-            author_name: repository.name + '/' + repository.branch,
-            author_link: links.self
-        };
+        text += "On repository " + "[" + info.repository.name + "]" + "(" + info.repository.link + ")" + ": " + "\n";
+        text += "*Forked* to " + "[" + fork_name + "]" + "(" + fork_link + ")" + "\n";
+
         return {
             content: {
-                text: text,
-                attachments: [attachment],
+                attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
                 color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
