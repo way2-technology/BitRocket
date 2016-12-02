@@ -67,27 +67,24 @@ const processors = {
     },
 
     fork(request) {
-        const author = {
-            username: request.content.actor.username,
-            displayname: request.content.actor.display_name
-        };
-        const repository = {
-            name: request.content.repository.full_name,
-            fork: request.content.fork.full_name
-        };
-        const links = {
-            self: request.content.repository.links.self.href
-        };
+        const info = get_basic_info(request);
+
+        const fork_name = request.content.fork.full_name;
+        const fork_link = request.content.fork.links.html.href;
+
         let text = '';
-        text += author.displayname + ' (@' + author.username + ') forked repo ' + repository.name + ':\n';
-        text += repository.name + ' => ' + repository.fork + '\n';
+        text += "On repository " + "[" + info.repository.name + "]" + "(" + info.repository.link + ")" + ": " + "\n";
+        text += "*Forked* to " + "[" + fork_name + "]" + "(" + fork_link + ")" + "\n";
+
         const attachment = {
-            author_name: repository.name + '/' + repository.branch,
-            author_link: links.self
+            author_name: info.author.displayname,
+            author_link: info.author.link,
+            author_icon: info.author.avatar,
+            text: text
         };
+
         return {
             content: {
-                text: text,
                 attachments: [attachment],
                 parseUrls: false,
                 color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
