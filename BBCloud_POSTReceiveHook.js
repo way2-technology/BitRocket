@@ -91,29 +91,18 @@ const processors = {
     },
 
     comment(request) {
-        const author = {
-            username: request.content.comment.user.username,
-            displayname: request.content.comment.user.display_name
-        };
-        const comment = {
-            text: request.content.comment.content.raw,
-            repo: request.content.repository.full_name,
-            path: request.content.comment.inline.path
-        };
-        const links = {
-            self: request.content.comment.links.self.href
-        };
+        const info = get_basic_info(request);
+
+        const commit = request.content.comment.commit;
+        const comment = request.content.comment;
+
         let text = '';
-        text += author.displayname + ' (@' + author.username + ') commented on commit:\n';
-        text += comment.text + '\n';
-        const attachment = {
-            author_name: comment.repo + '/' + comment.path,
-            author_link: links.self
-        };
+        text += "On repository " + "[" + info.repository.name + "]" + "(" + info.repository.link + ")" + ": " + "\n";
+        text += "*Commented* " + "[" + commit.hash.toString().substring(0,6) + "]" + "(" + commit.links.html.href + ")" + ": " + comment.content.raw + "\n";
+
         return {
             content: {
-                text: text,
-                attachments: [attachment],
+                attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
                 color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
