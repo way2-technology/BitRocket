@@ -41,6 +41,16 @@ function get_basic_info(request) {
   };
 }
 
+function create_attachement(author, text){
+    const attachment = {
+        author_name: author.displayname,
+        author_link: author.link,
+        author_icon: author.avatar,
+        text: text
+    };
+    return attachment;
+}
+
 const processors = {
     push(request) {
         const info = get_basic_info(request);
@@ -51,15 +61,10 @@ const processors = {
         for (let commit of commits) {
             text += "*Pushed* " + "[" + commit.hash.toString().substring(0,6) + "]" + "(" + commit.links.html.href + ")" + ": " + commit.message;
         }
-        const attachment = {
-            author_name: info.author.displayname,
-            author_link: info.author.link,
-            author_icon: info.author.avatar,
-            text: text
-        };
+
         return {
             content: {
-                attachments: [attachment],
+                attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
                 color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
@@ -76,16 +81,9 @@ const processors = {
         text += "On repository " + "[" + info.repository.name + "]" + "(" + info.repository.link + ")" + ": " + "\n";
         text += "*Forked* to " + "[" + fork_name + "]" + "(" + fork_link + ")" + "\n";
 
-        const attachment = {
-            author_name: info.author.displayname,
-            author_link: info.author.link,
-            author_icon: info.author.avatar,
-            text: text
-        };
-
         return {
             content: {
-                attachments: [attachment],
+                attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
                 color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
             }
