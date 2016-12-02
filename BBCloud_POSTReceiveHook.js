@@ -25,27 +25,36 @@ const showNotifications = {
     pullrequest_comment_updated: true
 };
 
+function get_basic_info(request) {
+  const author = {
+      displayname: request.content.actor.display_name,
+      link: request.content.actor.links.html,
+      avatar: request.content.actor.links.avatar.href
+  };
+  const repository = {
+      name: request.content.repository.full_name,
+      link: request.content.repository.links.html.href
+  };
+  return {
+      author: author,
+      repository: repository
+  };
+}
+
 const processors = {
     push(request) {
-        const author = {
-            displayname: request.content.actor.display_name,
-            link: request.content.actor.links.html,
-            avatar: request.content.actor.links.avatar.href
-        };
-        const repository = {
-            name: request.content.repository.full_name,
-            link: request.content.repository.links.html.href
-        };
+        const info = get_basic_info(request);
         const commits = request.content.push.changes[0].commits;
+
         let text = '';
-        text += "On repository " + "[" + repository.name + "]" + "(" + repository.link + ")" + ": " + "\n";
+        text += "On repository " + "[" + info.repository.name + "]" + "(" + info.repository.link + ")" + ": " + "\n";
         for (let commit of commits) {
             text += "*Pushed* " + "[" + commit.hash.toString().substring(0,6) + "]" + "(" + commit.links.html.href + ")" + ": " + commit.message;
         }
         const attachment = {
-            author_name: author.displayname,
-            author_link: author.link,
-            author_icon: author.avatar,
+            author_name: info.author.displayname,
+            author_link: info.author.link,
+            author_icon: info.author.avatar,
             text: text
         };
         return {
