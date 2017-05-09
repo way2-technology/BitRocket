@@ -428,8 +428,7 @@ class Script {
             }
         }
 
-        if (result.error) {
-            console.log(request.headers);
+        if (result.error && request.headers['x-event-key']) {
             const key = request.headers['x-event-key'].replace(':', '_');
 
             if (showNotifications[key] === true) {
