@@ -131,8 +131,8 @@ You can select everything here and overwrite this settings in the script-config 
 * Pull Request Events
     - Created
     - Updated
-    - ~~Approved~~ _(BitBucket provides too less info)_
-    - ~~Approval Removed~~ _(BitBucket provides too less info)_
+    - ~~Approved~~ _(BitBucket provides insufficient info)_
+    - ~~Approval Removed~~ _(BitBucket provides insufficient info)_
     - Merged
     - Declined
     - Comment Created
