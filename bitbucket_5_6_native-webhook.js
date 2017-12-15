@@ -4,7 +4,7 @@ const config = {
     colorDefault: '#225159',
     colorError: '#8D2A12',
     colorSuccess: '#14720a',
-    bitbucketUrl: 'https://bitbucket.cbmb.klinikum.rwth-aachen.de'
+    bitbucketUrl: ''
 };
 
 const showNotifications = {
