@@ -70,36 +70,40 @@ When using BitBucket Cloud you have to insert the complete code of the file `BBC
 <br /><br />
 
 ###### Configure Messages:
-Define which links in pull request notification should be shown
+First, configure your colors and, to get links working, configure your bitbucket server root url:
 ```
-const showLinks = {
-    decline: true,
-    approve: true,
-    merge: true,
-    commits: true,
-    comments: true
+const config = {
+    colorDefault: '#225159',
+    colorError: '#8D2A12',
+    colorSuccess: '#14720a',
+    bitbucketUrl: 'https://bitbucket.cbmb.klinikum.rwth-aachen.de'
 };
 ```
 <br /><br />
 Now set, which notification you want to receive in Rocket.Chat
 ```
 const showNotifications = {
-    push: true,
-    fork: true,
-    comment: true,
-    pullrequest_created: true,
-    pullrequest_declined: true,
-    pullrequest_merged: true,
-    pullrequest_updated: true,
-    pullrequest_comment_created: true,
-    pullrequest_comment_deleted: true,
-    pullrequest_comment_updated: true
+    'repo:refs_changed': true,
+    'repo:forked': true,
+    'repo:comment:added': true,
+    'repo:comment:edited': true,
+    'repo:comment:deleted': true,
+    'pr:opened': true,
+    'pr:reviewer:approved': true,
+    'pr:reviewer:unapproved': true,
+    'pr:reviewer:needs_work': true,
+    'pr:merged': true,
+    'pr:declined': true,
+    'pr:deleted': true,
+    'pr:comment:added': true,
+    'pr:comment:deleted': true,
+    'pr:comment:edited': true
 };
 ```
 <br /><br /><br /><br />
 
 ##### BitBucket Server Script
-When using BitBucket Server you have to insert the complete code of the file `BBServer_POSTReceiveHook.js` into this field.
+When using BitBucket Server you have to insert the complete code of the file `bitbucket_5_6_native-webhook.js` into this field.
 <br /><br />
 
 #### Save changes
@@ -145,37 +149,24 @@ Click on "Save" and your done!
 
 ### Configure BitBucket Server
 
-#### Install Post-Receive Webhook plugin
-If it's not installed yet, you need to install the free [BitBucket Server Web Post Hooks Plugin][BitBucketplugin].<br />
-To install the plugin login to your BitBucket Server instance an navigate to Administration and there click on "Find new add-ons" under section ADD-ONS.<br />
-Search for `BitBucket Server Web Post Hooks Plugin` and click on install.
-<br /><br />
-
-#### Create Post-Receive WebHook in repository
-Once the [BitBucket Server Web Post Hooks Plugin][BitBucketplugin] is installed, navigate to the desired repository and click on "Settings" in the left column.<br />
-Now click on "Hooks" and enable "Post-Receive WebHooks".<br />
-After enabling "Post-Receive WebHooks" klick on the little pen-icon next to the plugin title. The opening modal provides an input field for defining your webhook url.<br />
-Please enter the correct url to your Rocket.Chat webhook (just copy it from Rocket.Chat integration settings).<br />
+#### Create WebHook in repository
+Navigate to the desired repository and click on "Settings" in the left column.<br />
+Now click on "Webhooks" and add a new one.<br />
+After inserting your data, previously entered in RocketChat test the connection.<br />
 Click on "Save" and your done!
 <br /><br /><br /><br />
 
-### Test connection
-To test wether communication between Bitbuket and Rocket.Chat works or not, just push any changes to the repository you've set up the hook.<br />
-Did your channel or user receive a notification about the push? Congrats - everything is fine!<br />
-No message received? Please double check all steps. If everything is set up as mentioned in this how to and it still doesn't work, feel free to drop us a line!
-<br /><br /><br /><br />
-
-## Add more repositories <a name="more"></a>
-To inform your Rocket.Chat channel or user about changes on other repositories, just follow the instructions on how to create the Post-Receive WebHook in BitBucket Cloud/Server again. You're not limited in the number of repositories which send information to Rocket.Chat. 
-<br /><br /><br /><br />
-
 ## Want to contribute? <a name="contribute"></a>
-If you have any ideas on how to make this script way better, feel free to contact us. We would love to add more features. Let's improve this work together!
+I forked this from FinndropStudios/BitRocket. Feel free to also do this.
 <br /><br /><br /><br />
 
-## Team <a name="team"></a>
+## Team (originally code) <a name="team"></a>
 Manuel Bachl (<m.bachl@finndrop.de>)<br />
 Thies Schneider (<t.schneider@finndrop.de>)
+<br /><br /><br /><br />
+
+## This fork <a name="this-fork"></a>
+Markus Bauer (<mabauer@ukaachen.de>)
 <br /><br /><br /><br />
 
 ## Copyright & License <a name="license"></a>
