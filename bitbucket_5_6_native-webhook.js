@@ -4,7 +4,7 @@ const config = {
     colorDefault: '#225159',
     colorError: '#8D2A12',
     colorSuccess: '#14720a',
-    bitbucketUrl: ''
+    bitbucketUrl: 'configure me ;-)'
 };
 
 const showNotifications = {
@@ -171,7 +171,7 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         const links = {
-            self: config.bitbucketUrl + '/projects/' + pullRequest.projectKey + '/repos/' + pullRequest.repo + '/pull-requests/' + pullRequest.id + '/overview'
+            self: config.bitbucketUrl + '/projects/' + pullRequest.projectKey + '/repos/' + pullRequest.destrepo + '/pull-requests/' + pullRequest.id + '/overview'
         };
         let text = '';
         text += '@' + author.username + ' opened a new pull request:\n';
