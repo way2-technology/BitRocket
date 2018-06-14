@@ -176,6 +176,7 @@ const processors = {
         let text = '';
         text += '@' + author.username + ' opened a new pull request:\n';
         text += '`' + pullRequest.sourcerepo + '/' + pullRequest.sourcebranch + '` => `' + pullRequest.destrepo + '/' + pullRequest.destinationbranch + '`\n\n';
+        text += 'Title: (' + pullRequest.id + ') ' + pullRequest.title + '\n';
         text += 'Description:\n';
         text += pullRequest.description + '\n';
         const attachment = {
@@ -210,7 +211,7 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' approved a pull request from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' approved pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
             author_name: 'APPROVED: ' + '#' + pullRequest.id + ' - ' + pullrequest.title,
@@ -244,7 +245,7 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' unapproved a pull request from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' unapproved pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
             author_name: 'UNAPPROVED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
@@ -277,7 +278,7 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' says, a pull request from @' + pullrequest.author + ' needs work:\n';
+        text += '@' + author.username + ' says, pull request ' + pullRequest.id + ' from @' + pullrequest.author + ' needs work:\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
             author_name: 'NEEDS WORK: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
@@ -310,7 +311,7 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' merged a pull request from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' merged pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
             author_name: 'MERGED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
@@ -343,7 +344,7 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' declined a pull request from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' declined pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
             author_name: 'DECLINED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
@@ -376,7 +377,7 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' deleted a pull request from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' deleted pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
             author_name: 'DELETED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
