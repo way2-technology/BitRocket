@@ -211,10 +211,10 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' approved pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' approved pull request ' + pullrequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
-            author_name: 'APPROVED: ' + '#' + pullRequest.id + ' - ' + pullrequest.title,
+            author_name: 'APPROVED: ' + '#' + pullrequest.id + ' - ' + pullrequest.title,
             author_link: config.bitbucketUrl + '/projects/' + pullrequest.projectKey + '/repos/' + pullrequest.sourcerepo + '/pull-requests/' + pullrequest.id + '/overview'
         };
         return {
@@ -245,10 +245,10 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' unapproved pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' unapproved pull request ' + pullrequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
-            author_name: 'UNAPPROVED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
+            author_name: 'UNAPPROVED: ' +  '#' + pullrequest.id + ' - ' + pullrequest.title,
             author_link: config.bitbucketUrl + '/projects/' + pullrequest.projectKey + '/repos/' + pullrequest.sourcerepo + '/pull-requests/' + pullrequest.id + '/overview'
         };
         return {
@@ -278,10 +278,10 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' says, pull request ' + pullRequest.id + ' from @' + pullrequest.author + ' needs work:\n';
+        text += '@' + author.username + ' says, pull request ' + pullrequest.id + ' from @' + pullrequest.author + ' needs work:\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
-            author_name: 'NEEDS WORK: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
+            author_name: 'NEEDS WORK: ' +  '#' + pullrequest.id + ' - ' + pullrequest.title,
             author_link: config.bitbucketUrl + '/projects/' + pullrequest.projectKey + '/repos/' + pullrequest.sourcerepo + '/pull-requests/' + pullrequest.id + '/overview'
         };
         return {
@@ -311,10 +311,10 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' merged pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' merged pull request ' + pullrequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
-            author_name: 'MERGED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
+            author_name: 'MERGED: ' +  '#' + pullrequest.id + ' - ' + pullrequest.title,
             author_link: config.bitbucketUrl + '/projects/' + pullrequest.projectKey + '/repos/' + pullrequest.sourcerepo + '/pull-requests/' + pullrequest.id + '/overview'
         };
         return {
@@ -343,11 +343,10 @@ const processors = {
             title: content.pullRequest.title,
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
-        let text = '';
-        text += '@' + author.username + ' declined pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' declined pull request ' + pullrequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
-            author_name: 'DECLINED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
+            author_name: 'DECLINED: ' +  '#' + pullrequest.id + ' - ' + pullrequest.title,
             author_link: config.bitbucketUrl + '/projects/' + pullrequest.projectKey + '/repos/' + pullrequest.sourcerepo + '/pull-requests/' + pullrequest.id + '/overview'
         };
         return {
@@ -377,10 +376,10 @@ const processors = {
             description: content.pullRequest.description ? content.pullRequest.description : ''
         };
         let text = '';
-        text += '@' + author.username + ' deleted pull request ' + pullRequest.id + ' from @' + pullrequest.author + ':\n';
+        text += '@' + author.username + ' deleted pull request ' + pullrequest.id + ' from @' + pullrequest.author + ':\n';
         text += '`' + pullrequest.sourcerepo + '/' + pullrequest.sourcebranch + '` => `' + pullrequest.destrepo + '/' + pullrequest.destinationbranch + '`\n\n';
         const attachment = {
-            author_name: 'DELETED: ' +  '#' + pullRequest.id + ' - ' + pullrequest.title,
+            author_name: 'DELETED: ' +  '#' + pullrequest.id + ' - ' + pullrequest.title,
             author_link: config.bitbucketUrl + '/projects/' + pullrequest.projectKey + '/repos/' + pullrequest.sourcerepo + '/pull-requests/' + pullrequest.id + '/overview'
         };
         return {
