@@ -157,16 +157,12 @@ Click on "Save" and your done!
 <br /><br /><br /><br />
 
 ## Want to contribute? <a name="contribute"></a>
-I forked this from FinndropStudios/BitRocket. Feel free to also do this.
+Feel free to do.
 <br /><br /><br /><br />
 
-## Team (originally code) <a name="team"></a>
+## Team <a name="team"></a>
 Manuel Bachl (<m.bachl@finndrop.de>)<br />
 Thies Schneider (<t.schneider@finndrop.de>)
-<br /><br /><br /><br />
-
-## This fork <a name="this-fork"></a>
-Markus Bauer (<mabauer@ukaachen.de>)
 <br /><br /><br /><br />
 
 ## Copyright & License <a name="license"></a>
