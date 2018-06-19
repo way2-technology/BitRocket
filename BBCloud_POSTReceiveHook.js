@@ -30,7 +30,7 @@ const showNotifications = {
 function get_basic_info(request) {
   const author = {
       displayname: request.content.actor.display_name,
-      link: request.content.actor.links.html,
+      link: request.content.actor.links.html.href,
       avatar: request.content.actor.links.avatar.href
   };
   const repository = {
