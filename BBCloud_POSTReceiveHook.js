@@ -1,7 +1,8 @@
 /*jshint esversion: 6 */
 
 const config = {
-    color: '#225159'
+    color: '#225159',
+    avatar: 'https://avatar-cdn.atlassian.com/557058:6d0da0b1-b17e-4cf4-8616-106f69d293ea?by=id&quot'
 };
 
 const showLinks = {
@@ -66,9 +67,10 @@ const processors = {
 
         return {
             content: {
+                avatar: config.avatar,
                 attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -85,9 +87,10 @@ const processors = {
 
         return {
             content: {
+                avatar: config.avatar,
                 attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -102,11 +105,16 @@ const processors = {
         text += "On repository " + "[" + info.repository.name + "]" + "(" + info.repository.link + ")" + ": " + "\n";
         text += "*Commented* " + "[" + commit.hash.toString().substring(0,6) + "]" + "(" + commit.links.html.href + ")" + ": " + comment.content.raw + "\n";
 
+        const attachment = {
+            image_url: config.image_url
+        };
         return {
             content: {
+                avatar: config.avatar,
                 attachments: [create_attachement(info.author, text)],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
+                attachments: [attachment],
             }
         };
     },
@@ -159,14 +167,15 @@ const processors = {
         }
         const attachment = {
             author_name: '#' + pullrequest.id + ' - ' + pullrequest.title,
-            author_link: links.self
+            author_link: links.self,
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -194,10 +203,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -223,10 +233,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -252,10 +263,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -285,10 +297,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -316,10 +329,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -344,10 +358,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -372,10 +387,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     },
@@ -400,10 +416,11 @@ const processors = {
         };
         return {
             content: {
+                avatar: config.avatar,
                 text: text,
                 attachments: [attachment],
                 parseUrls: false,
-                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159')
+                color: ((config.color !== '') ? '#' + config.color.replace('#', '') : '#225159'),
             }
         };
     }
